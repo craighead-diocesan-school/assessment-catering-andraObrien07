@@ -1,15 +1,37 @@
 <script>
-  import Header from '$lib/Header.svelte'
+  import Header from "$lib/Header.svelte";
+
+  // go to the getWalls function and it will send you back the array.
+  let foodToBuy = getFood();
+  // let selected = carsForHire[0];
+
+  async function getFood() {
+    // hop off to the website to get the array
+    let foodData = await fetch(
+      "https://digitech.craighead.school.nz/api/restaurant",
+    );
+
+    // send the array to where this function was called from.
+    return foodData.json();
+  }
 </script>
 
 <Header />
 
-<main>
-  <h2>SvelteKit</h2>
+{#await foodToBuy}
+  ...waiting
 
-  <p>Welcome to coding with SvelteKit, a modern JavaScript framework that makes it easy to code great apps.</p>
-</main>
-
+  <!-- once you get the data, do this stuff -->
+{:then foodToBuy}
+  <!-- two diff loops to go through the two diff arrays. fast and nice -->
+  <!-- {#each foodToBuy.breakfast as foodToBuy}{/each} -->
+  {#each foodToBuy.breakfast as foodToBuy}
+    {foodToBuy.item}
+    {foodToBuy.description}
+    {foodToBuy.price}
+    <img src={foodToBuy.img} alt={foodToBuy.item} />
+  {/each}
+{/await}
 <footer>
   <p>&copy; Craighead Diocesan School 2024</p>
 </footer>
