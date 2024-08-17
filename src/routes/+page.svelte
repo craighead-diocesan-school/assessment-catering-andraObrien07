@@ -39,6 +39,14 @@
         {foodToBuy.description}
         ${foodToBuy.price}
         <img src={foodToBuy.img} alt={foodToBuy.item} />
+
+        <button
+          on:click={() => {
+            addFoodToMenu(foodToBuy);
+          }}
+        >
+          Add To Menu</button
+        >
       {/each}
       <!-- </div> -->
       {#each foodToBuy.dinner as foodToBuy}
@@ -60,6 +68,7 @@
   </div>
   <div class="column">
     <h3>Menu</h3>
+
     {#each menu as foodToBuy}
       {foodToBuy.item}
       {foodToBuy.description}
