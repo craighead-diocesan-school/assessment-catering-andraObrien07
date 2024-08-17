@@ -20,6 +20,8 @@
   function addFoodToMenu(foodToBuy) {
     menu = [...menu, foodToBuy];
   }
+
+  let GST = 1.15;
 </script>
 
 <Header />
@@ -90,7 +92,7 @@
     {#each menu as foodToBuy}
       {foodToBuy.item}
       {foodToBuy.description}
-      ${foodToBuy.price}
+      ${foodToBuy.price} + ${GST} GST
       <img src={foodToBuy.img} alt={foodToBuy.item} />
     {/each}
   </div>
