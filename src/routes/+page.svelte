@@ -31,6 +31,13 @@
     {foodToBuy.price}
     <img src={foodToBuy.img} alt={foodToBuy.item} />
   {/each}
+
+  {#each foodToBuy.dinner as foodToBuy}
+    {foodToBuy.item}
+    {foodToBuy.description}
+    {foodToBuy.price}
+    <img src={foodToBuy.img} alt={foodToBuy.item} />
+  {/each}
 {/await}
 <footer>
   <p>&copy; Craighead Diocesan School 2024</p>
