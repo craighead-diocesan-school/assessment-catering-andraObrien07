@@ -14,31 +14,69 @@
     // send the array to where this function was called from.
     return foodData.json();
   }
+
+  let menu = [];
+
+  function addFoodToMenu(foodToBuy) {
+    menu = [...menu, foodToBuy];
+  }
 </script>
 
 <Header />
+<div class="columns">
+  <div class="column">
+    {#await foodToBuy}
+      ...waiting
 
-{#await foodToBuy}
-  ...waiting
+      <!-- once you get the data, do this stuff -->
+    {:then foodToBuy}
+      <!-- two diff loops to go through the two diff arrays. fast and nice -->
+      <!-- {#each foodToBuy.breakfast as foodToBuy}{/each} -->
+      <!-- <div class="columnB"> -->
+      {#each foodToBuy.breakfast as foodToBuy}
+        <p>Breakfast</p>
+        {foodToBuy.item}
+        {foodToBuy.description}
+        ${foodToBuy.price}
+        <img src={foodToBuy.img} alt={foodToBuy.item} />
+      {/each}
+      <!-- </div> -->
+      {#each foodToBuy.dinner as foodToBuy}
+        <p>Dinner</p>
+        {foodToBuy.item}
+        {foodToBuy.description}
+        ${foodToBuy.price}
+        <img src={foodToBuy.img} alt={foodToBuy.item} />
+      {/each}
 
-  <!-- once you get the data, do this stuff -->
-{:then foodToBuy}
-  <!-- two diff loops to go through the two diff arrays. fast and nice -->
-  <!-- {#each foodToBuy.breakfast as foodToBuy}{/each} -->
-  {#each foodToBuy.breakfast as foodToBuy}
-    {foodToBuy.item}
-    {foodToBuy.description}
-    {foodToBuy.price}
-    <img src={foodToBuy.img} alt={foodToBuy.item} />
-  {/each}
-
-  {#each foodToBuy.dinner as foodToBuy}
-    {foodToBuy.item}
-    {foodToBuy.description}
-    {foodToBuy.price}
-    <img src={foodToBuy.img} alt={foodToBuy.item} />
-  {/each}
-{/await}
+      {#each foodToBuy.dessert as foodToBuy}
+        <p>Dessert</p>
+        {foodToBuy.item}
+        {foodToBuy.description}
+        ${foodToBuy.price}
+        <img src={foodToBuy.img} alt={foodToBuy.item} />
+      {/each}
+    {/await}
+  </div>
+  <div class="column">
+    <h3>Menu</h3>
+    {#each menu as foodToBuy}
+      {foodToBuy.item}
+      {foodToBuy.description}
+      ${foodToBuy.price}
+      <img src={foodToBuy.img} alt={foodToBuy.item} />
+    {/each}
+  </div>
+</div>
 <footer>
-  <p>&copy; Craighead Diocesan School 2024</p>
+  <p>&copy; AndraC @ Craighead Diocesan School 2024</p>
 </footer>
+
+<style>
+  .column {
+    width: 400px; /* Fixed width of 1000px */
+    /* justify-content: left; */
+    max-width: 100%; /* Ensures the container doesn't overflow */
+    margin: 4px auto; /* Centers the container */
+  }
+</style>
