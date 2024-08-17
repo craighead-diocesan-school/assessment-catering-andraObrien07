@@ -39,7 +39,6 @@
         {foodToBuy.description}
         ${foodToBuy.price}
         <img src={foodToBuy.img} alt={foodToBuy.item} />
-
         <button
           on:click={() => {
             addFoodToMenu(foodToBuy);
@@ -55,6 +54,13 @@
         {foodToBuy.description}
         ${foodToBuy.price}
         <img src={foodToBuy.img} alt={foodToBuy.item} />
+        <button
+          on:click={() => {
+            addFoodToMenu(foodToBuy);
+          }}
+        >
+          Add To Menu</button
+        >
       {/each}
 
       {#each foodToBuy.dessert as foodToBuy}
@@ -63,6 +69,13 @@
         {foodToBuy.description}
         ${foodToBuy.price}
         <img src={foodToBuy.img} alt={foodToBuy.item} />
+        <button
+          on:click={() => {
+            addFoodToMenu(foodToBuy);
+          }}
+        >
+          Add To Menu</button
+        >
       {/each}
     {/await}
   </div>
