@@ -81,6 +81,11 @@
   </div>
   <div class="column">
     <h3>Menu</h3>
+    {#if menu == 0}
+      <p>No Food In Menu</p>
+    {:else}
+      <p>You have {menu.length} foods in your menu</p>
+    {/if}
 
     {#each menu as foodToBuy}
       {foodToBuy.item}
