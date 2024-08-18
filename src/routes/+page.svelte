@@ -23,33 +23,18 @@
 
   let GST = 1.15;
 
-  // function removeFoodFromMenu(index) {
-  //   selected.foodToBuy = [
-  //     ...selected.foodToBuy.slice(0, index),
-  //     ...selected.foodToBuy.slice(index + 1),
-  //   ];
+  // function customMenu() {
+  //   foodToBuy.cart = [...foodToBuy.cart, ""];
   // }
+
+  function removeFoodFromMenu(index) {
+    menu = [...menu.slice(0, index), ...menu.slice(index, 1)];
+  }
+  // let selected = lists[0];
+  // let lists = [];
   // let selected = lists[0];
 
   //AHHHHHHHHHHHHHH SHOOOOTTTTTT MEEEEEEE
-
-  // function removeFoodToMenu(index) {
-  //   const firstPart = menu.slice(0, index);
-  //   //creates a new array that includes all elements from the start of the tasks array up to (but not including) the element at index.
-
-  //   const secondPart = menu.slice(index + 1);
-  //   //creates a new array that includes all elements from the element immediately after index to the end of the tasks array.
-
-  //   menu = [...firstPart, ...secondPart];
-  //   //(...) is used to concatenate these two arrays, basically creating a new array out of the old one, but leaving out the element at index.
-  // }
-
-  // function removeFoodFromMenu(index) {
-  //   selected.foodToBuy = [
-  //     ...selected.foodToBuy.slice(0, index),
-  //     ...selected.foodToBuy.slice(index + 1),
-  //   ];
-  // }
 </script>
 
 <Header />
@@ -59,8 +44,6 @@
       ...waiting
     {:then foodToBuy}
       <!-- two diff loops to go through the two diff arrays. fast and nice -->
-      <!-- {#each foodToBuy.breakfast as foodToBuy}{/each} -->
-      <!-- <div class="columnB"> -->
       {#each foodToBuy.breakfast as foodToBuy}
         <p>Breakfast</p>
         {foodToBuy.item}
@@ -110,6 +93,23 @@
   </div>
   <div class="column">
     <h3>Menu</h3>
+
+    <!-- <button on:click={customMenu}>+</button> -->
+
+    <!-- <button
+      on:click={() => {
+        removeFoodFromMenu(index);
+      }}>remove</button
+    > -->
+
+    {#each menu as menu, index}
+      <button
+        on:click={() => {
+          removeFoodFromMenu(index);
+        }}>🗑️</button
+      >
+    {/each}
+
     {#if menu == 0}
       <p>No Food In Menu</p>
     {:else}
@@ -121,15 +121,26 @@
       {foodToBuy.description}
       ${foodToBuy.price} + ${GST} GST
       <img src={foodToBuy.img} alt={foodToBuy.item} />
-
+      <!-- <button
+        on:click={() => {
+          removeFoodFromMenu(index);
+        }}></button
+      > -->
       <!-- {#each selected.foodToBuy as item}
         <input bind:value={item} />
       {/each}
       <button
         on:click={() => {
           removeFoodFromMenu(index);
-        }}>🗑 remove</button
+        }}>remove</button
       > -->
+    {/each}
+    {#each menu as menu, index}
+      <button
+        on:click={() => {
+          removeFoodFromMenu(index);
+        }}>🗑️</button
+      >
     {/each}
   </div>
 </div>
