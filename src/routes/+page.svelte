@@ -21,7 +21,7 @@
     menu = [...menu, foodToBuy];
   }
 
-  let GST = 1.15;
+  let GST = 0.15;
 
   // function customMenu() {
   //   foodToBuy.cart = [...foodToBuy.cart, ""];
@@ -102,13 +102,13 @@
       }}>remove</button
     > -->
 
-    {#each menu as menu, index}
+    <!-- {#each menu as menu, index}
       <button
         on:click={() => {
           removeFoodFromMenu(index);
-        }}>🗑️</button
+        }}></button
       >
-    {/each}
+    {/each} -->
 
     {#if menu == 0}
       <p>No Food In Menu</p>
@@ -119,7 +119,8 @@
     {#each menu as foodToBuy}
       {foodToBuy.item}
       {foodToBuy.description}
-      ${foodToBuy.price} + ${GST} GST
+      ${foodToBuy.price}
+      + ${foodToBuy.price * GST} GST
       <img src={foodToBuy.img} alt={foodToBuy.item} />
       <!-- <button
         on:click={() => {
