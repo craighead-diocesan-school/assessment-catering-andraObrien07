@@ -22,6 +22,34 @@
   }
 
   let GST = 1.15;
+
+  // function removeFoodFromMenu(index) {
+  //   selected.foodToBuy = [
+  //     ...selected.foodToBuy.slice(0, index),
+  //     ...selected.foodToBuy.slice(index + 1),
+  //   ];
+  // }
+  // let selected = lists[0];
+
+  //AHHHHHHHHHHHHHH SHOOOOTTTTTT MEEEEEEE
+
+  // function removeFoodToMenu(index) {
+  //   const firstPart = menu.slice(0, index);
+  //   //creates a new array that includes all elements from the start of the tasks array up to (but not including) the element at index.
+
+  //   const secondPart = menu.slice(index + 1);
+  //   //creates a new array that includes all elements from the element immediately after index to the end of the tasks array.
+
+  //   menu = [...firstPart, ...secondPart];
+  //   //(...) is used to concatenate these two arrays, basically creating a new array out of the old one, but leaving out the element at index.
+  // }
+
+  // function removeFoodFromMenu(index) {
+  //   selected.foodToBuy = [
+  //     ...selected.foodToBuy.slice(0, index),
+  //     ...selected.foodToBuy.slice(index + 1),
+  //   ];
+  // }
 </script>
 
 <Header />
@@ -29,8 +57,6 @@
   <div class="column">
     {#await foodToBuy}
       ...waiting
-
-      <!-- once you get the data, do this stuff -->
     {:then foodToBuy}
       <!-- two diff loops to go through the two diff arrays. fast and nice -->
       <!-- {#each foodToBuy.breakfast as foodToBuy}{/each} -->
@@ -40,7 +66,6 @@
         {foodToBuy.item}
         {foodToBuy.description}
         ${foodToBuy.price}
-        <img src={foodToBuy.img} alt={foodToBuy.item} />
         <button
           on:click={() => {
             addFoodToMenu(foodToBuy);
@@ -48,6 +73,7 @@
         >
           Add To Menu</button
         >
+        <img src={foodToBuy.img} alt={foodToBuy.item} />
       {/each}
       <!-- </div> -->
       {#each foodToBuy.dinner as foodToBuy}
@@ -55,7 +81,6 @@
         {foodToBuy.item}
         {foodToBuy.description}
         ${foodToBuy.price}
-        <img src={foodToBuy.img} alt={foodToBuy.item} />
         <button
           on:click={() => {
             addFoodToMenu(foodToBuy);
@@ -63,6 +88,7 @@
         >
           Add To Menu</button
         >
+        <img src={foodToBuy.img} alt={foodToBuy.item} />
       {/each}
 
       {#each foodToBuy.dessert as foodToBuy}
@@ -70,7 +96,7 @@
         {foodToBuy.item}
         {foodToBuy.description}
         ${foodToBuy.price}
-        <img src={foodToBuy.img} alt={foodToBuy.item} />
+
         <button
           on:click={() => {
             addFoodToMenu(foodToBuy);
@@ -78,6 +104,7 @@
         >
           Add To Menu</button
         >
+        <img src={foodToBuy.img} alt={foodToBuy.item} />
       {/each}
     {/await}
   </div>
@@ -94,6 +121,15 @@
       {foodToBuy.description}
       ${foodToBuy.price} + ${GST} GST
       <img src={foodToBuy.img} alt={foodToBuy.item} />
+
+      <!-- {#each selected.foodToBuy as item}
+        <input bind:value={item} />
+      {/each}
+      <button
+        on:click={() => {
+          removeFoodFromMenu(index);
+        }}>🗑 remove</button
+      > -->
     {/each}
   </div>
 </div>
@@ -103,9 +139,8 @@
 
 <style>
   .column {
-    width: 400px; /* Fixed width of 1000px */
-    /* justify-content: left; */
-    max-width: 100%; /* Ensures the container doesn't overflow */
-    margin: 4px auto; /* Centers the container */
+    width: 400px;
+    max-width: 100%;
+    margin-left: 20px;
   }
 </style>
