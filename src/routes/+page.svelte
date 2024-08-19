@@ -122,19 +122,6 @@
       ${foodToBuy.price}
       + ${foodToBuy.price * GST} GST
       <img src={foodToBuy.img} alt={foodToBuy.item} />
-      <!-- <button
-        on:click={() => {
-          removeFoodFromMenu(index);
-        }}></button
-      > -->
-      <!-- {#each selected.foodToBuy as item}
-        <input bind:value={item} />
-      {/each}
-      <button
-        on:click={() => {
-          removeFoodFromMenu(index);
-        }}>remove</button
-      > -->
     {/each}
     {#each menu as menu, index}
       <button
