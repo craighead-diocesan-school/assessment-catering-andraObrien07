@@ -102,10 +102,6 @@
       ${foodToBuy.price}
       + ${foodToBuy.price * GST} GST
       <img src={foodToBuy.img} alt={foodToBuy.item} />
-
-      <!-- {#each menu as menu, index} -->
-
-      <!-- {/each} -->
     {/each}
   </div>
 </div>
