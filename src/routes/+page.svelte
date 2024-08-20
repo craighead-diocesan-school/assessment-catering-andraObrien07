@@ -23,18 +23,9 @@
 
   let GST = 0.15;
 
-  // function customMenu() {
-  //   foodToBuy.cart = [...foodToBuy.cart, ""];
-  // }
-
   function removeFoodFromMenu(index) {
     menu = [...menu.slice(0, index), ...menu.slice(index + 1)];
   }
-  // let selected = lists[0];
-  // let lists = [];
-  // let selected = lists[0];
-
-  //AHHHHHHHHHHHHHH SHOOOOTTTTTT MEEEEEEE
 </script>
 
 <Header />
@@ -94,42 +85,27 @@
   <div class="column">
     <h3>Menu</h3>
 
-    <!-- <button on:click={customMenu}>+</button> -->
-
-    <!-- <button
-      on:click={() => {
-        removeFoodFromMenu(index);
-      }}>remove</button
-    > -->
-
-    <!-- {#each menu as menu, index}
-      <button
-        on:click={() => {
-          removeFoodFromMenu(index);
-        }}></button
-      >
-    {/each} -->
-
     {#if menu == 0}
       <p>No Food In Menu</p>
     {:else}
       <p>You have {menu.length} foods in your menu</p>
     {/if}
 
-    {#each menu as foodToBuy}
+    {#each menu as foodToBuy, index}
+      <button
+        on:click={() => {
+          removeFoodFromMenu(index);
+        }}>🗑️</button
+      >
       {foodToBuy.item}
       {foodToBuy.description}
       ${foodToBuy.price}
       + ${foodToBuy.price * GST} GST
       <img src={foodToBuy.img} alt={foodToBuy.item} />
 
-      {#each menu as menu, index}
-        <button
-          on:click={() => {
-            removeFoodFromMenu(index);
-          }}>🗑️</button
-        >
-      {/each}
+      <!-- {#each menu as menu, index} -->
+
+      <!-- {/each} -->
     {/each}
   </div>
 </div>
