@@ -28,7 +28,7 @@
   // }
 
   function removeFoodFromMenu(index) {
-    menu = [...menu.slice(0, index), ...menu.slice(index, 1)];
+    menu = [...menu.slice(0, index), ...menu.slice(index + 1)];
   }
   // let selected = lists[0];
   // let lists = [];
@@ -122,13 +122,14 @@
       ${foodToBuy.price}
       + ${foodToBuy.price * GST} GST
       <img src={foodToBuy.img} alt={foodToBuy.item} />
-    {/each}
-    {#each menu as menu, index}
-      <button
-        on:click={() => {
-          removeFoodFromMenu(index);
-        }}>🗑️</button
-      >
+
+      {#each menu as menu, index}
+        <button
+          on:click={() => {
+            removeFoodFromMenu(index);
+          }}>🗑️</button
+        >
+      {/each}
     {/each}
   </div>
 </div>
