@@ -47,6 +47,7 @@
         >
           Add To Menu</button
         >
+
         <img src={foodToBuy.img} alt={foodToBuy.item} />
       {/each}
       <!-- </div> -->
@@ -103,7 +104,6 @@
       + ${foodToBuy.price * GST} GST
       <img src={foodToBuy.img} alt={foodToBuy.item} />
     {/each}
-    <!-- fghujk -->
   </div>
 </div>
 <footer>
