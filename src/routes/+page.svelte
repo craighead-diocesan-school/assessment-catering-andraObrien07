@@ -17,6 +17,8 @@
 
   let menu = [];
 
+  // foodToBuy = [...foodToBuy, { nameMenu: "" }];
+
   function addFoodToMenu(foodToBuy) {
     menu = [...menu, foodToBuy];
   }
@@ -84,8 +86,10 @@
     {/await}
   </div>
   <div class="column">
+    <!-- {addMenu} -->
     <h3>Menu</h3>
-
+    <!-- {menu} -->
+    <input bind:value={foodToBuy.nameMenu} />
     {#if menu == 0}
       <p>No Food In Menu</p>
     {:else}
