@@ -42,29 +42,27 @@
         {foodToBuy.item}
         {foodToBuy.description}
         ${foodToBuy.price}
-        <button
-          on:click={() => {
-            addFoodToMenu(foodToBuy);
-          }}
-        >
-          Add To Menu</button
-        >
+        {#if addFoodToMenu}
+          <p>Already added to menu</p>
+          <button
+            disabled={menu.includes(foodToBuy)}
+            on:click={() => {
+              addFoodToMenu(foodToBuy);
+            }}
+          >
+            Add To Menu</button
+          >
+        {/if}
 
         <img src={foodToBuy.img} alt={foodToBuy.item} />
       {/each}
-      <!-- </div> -->
+
       {#each foodToBuy.dinner as foodToBuy}
         <p>Dinner</p>
         {foodToBuy.item}
         {foodToBuy.description}
         ${foodToBuy.price}
-        <button
-          on:click={() => {
-            addFoodToMenu(foodToBuy);
-          }}
-        >
-          Add To Menu</button
-        >
+
         <img src={foodToBuy.img} alt={foodToBuy.item} />
       {/each}
 
@@ -74,13 +72,17 @@
         {foodToBuy.description}
         ${foodToBuy.price}
 
-        <button
-          on:click={() => {
-            addFoodToMenu(foodToBuy);
-          }}
-        >
-          Add To Menu</button
-        >
+        {#if addFoodToMenu}
+          <p>Already added to menu</p>
+          <button
+            disabled={menu.includes(foodToBuy)}
+            on:click={() => {
+              addFoodToMenu(foodToBuy);
+            }}
+          >
+            Add To Menu</button
+          >
+        {/if}
         <img src={foodToBuy.img} alt={foodToBuy.item} />
       {/each}
     {/await}
