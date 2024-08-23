@@ -62,6 +62,17 @@
         {foodToBuy.item}
         {foodToBuy.description}
         ${foodToBuy.price}
+        {#if addFoodToMenu}
+          <p>Already added to menu</p>
+          <button
+            disabled={menu.includes(foodToBuy)}
+            on:click={() => {
+              addFoodToMenu(foodToBuy);
+            }}
+          >
+            Add To Menu</button
+          >
+        {/if}
 
         <img src={foodToBuy.img} alt={foodToBuy.item} />
       {/each}
@@ -83,14 +94,14 @@
             Add To Menu</button
           >
         {/if}
+
         <img src={foodToBuy.img} alt={foodToBuy.item} />
       {/each}
     {/await}
   </div>
   <div class="column">
-    <!-- {addMenu} -->
     <h3>Menu</h3>
-    <!-- {menu} -->
+
     <input bind:value={foodToBuy.nameMenu} />
     {#if menu == 0}
       <p>No Food In Menu</p>
