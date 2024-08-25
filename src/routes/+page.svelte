@@ -19,107 +19,118 @@
 
   // foodToBuy = [...foodToBuy, { nameMenu: "" }];
 
-  function addFoodToMenu(foodToBuy) {
-    menu = [...menu, foodToBuy];
+  function addFoodToMenu(foodItem) {
+    menu = [...menu, foodItem];
+    foodItem.selected = true;
+    foodToBuy = foodToBuy;
   }
 
   let GST = 0.15;
 
   function removeFoodFromMenu(index) {
     menu = [...menu.slice(0, index), ...menu.slice(index + 1)];
+    foodItem.selected = false;
+    foodToBuy = foodToBuy;
   }
 </script>
 
 <Header />
+<p>Name you custon menu</p>
+<input bind:value={foodToBuy.nameMenu} />
 <div class="columns">
   <div class="column">
     {#await foodToBuy}
       ...waiting
     {:then foodToBuy}
       <!-- two diff loops to go through the two diff arrays. fast and nice -->
-      {#each foodToBuy.breakfast as foodToBuy}
+      {#each foodToBuy.breakfast as foodItem}
+        <!-- <div class:highlighted={foodToBuy.selected}> -->
         <p>Breakfast</p>
-        {foodToBuy.item}
-        {foodToBuy.description}
-        ${foodToBuy.price}
+        {foodItem.item}
+        {foodItem.description}
+        {foodItem.selected}
+        ${foodItem.price}
         {#if addFoodToMenu}
           <p>Already added to menu</p>
           <button
-            disabled={menu.includes(foodToBuy)}
+            disabled={menu.includes(foodItem)}
             on:click={() => {
-              addFoodToMenu(foodToBuy);
+              addFoodToMenu(foodItem);
             }}
           >
             Add To Menu</button
           >
         {/if}
-
-        <img src={foodToBuy.img} alt={foodToBuy.item} />
+        <!-- </div> -->
+        <div class:highlighted={foodItem.selected}>
+          <img src={foodItem.img} alt={foodItem.item} />
+        </div>
       {/each}
 
-      {#each foodToBuy.dinner as foodToBuy}
+      {#each foodToBuy.dinner as foodItem}
         <p>Dinner</p>
-        {foodToBuy.item}
-        {foodToBuy.description}
-        ${foodToBuy.price}
+        {foodItem.item}
+        {foodItem.description}
+        ${foodItem.price}
         {#if addFoodToMenu}
           <p>Already added to menu</p>
           <button
-            disabled={menu.includes(foodToBuy)}
+            disabled={menu.includes(foodItem)}
             on:click={() => {
-              addFoodToMenu(foodToBuy);
+              addFoodToMenu(foodItem);
             }}
           >
             Add To Menu</button
           >
         {/if}
-
-        <img src={foodToBuy.img} alt={foodToBuy.item} />
+        <div class:highlighted={foodItem.selected}>
+          <img src={foodItem.img} alt={foodItem.item} />
+        </div>
       {/each}
 
-      {#each foodToBuy.dessert as foodToBuy}
+      {#each foodToBuy.dessert as foodItem}
         <p>Dessert</p>
-        {foodToBuy.item}
-        {foodToBuy.description}
-        ${foodToBuy.price}
+        {foodItem.item}
+        {foodItem.description}
+        ${foodItem.price}
 
         {#if addFoodToMenu}
           <p>Already added to menu</p>
           <button
-            disabled={menu.includes(foodToBuy)}
+            disabled={menu.includes(foodItem)}
             on:click={() => {
-              addFoodToMenu(foodToBuy);
+              addFoodToMenu(foodItem);
             }}
           >
             Add To Menu</button
           >
         {/if}
-
-        <img src={foodToBuy.img} alt={foodToBuy.item} />
+        <div class:highlighted={foodItem.selected}>
+          <img src={foodItem.img} alt={foodItem.item} />
+        </div>
       {/each}
     {/await}
   </div>
   <div class="column">
     <h3>Menu</h3>
-
-    <input bind:value={foodToBuy.nameMenu} />
+    {foodToBuy.nameMenu}
     {#if menu == 0}
       <p>No Food In Menu</p>
     {:else}
       <p>You have {menu.length} foods in your menu</p>
     {/if}
 
-    {#each menu as foodToBuy, index}
+    {#each menu as foodItem, index}
       <button
         on:click={() => {
           removeFoodFromMenu(index);
         }}>🗑️</button
       >
-      {foodToBuy.item}
-      {foodToBuy.description}
-      ${foodToBuy.price}
-      + ${foodToBuy.price * GST} GST
-      <img src={foodToBuy.img} alt={foodToBuy.item} />
+      {foodItem.item}
+      {foodItem.description}
+      ${foodItem.price}
+      + ${foodItem.price * GST} GST
+      <img src={foodItem.img} alt={foodItem.item} />
     {/each}
   </div>
 </div>
@@ -129,8 +140,14 @@
 
 <style>
   .column {
-    width: 400px;
+    width: 300px;
     max-width: 100%;
     margin-left: 20px;
+    /* padding-bottom: 10px; */
+  }
+
+  .highlighted {
+    background-color: blue;
+    /* padding-bottom: 10px; */
   }
 </style>
