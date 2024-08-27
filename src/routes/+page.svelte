@@ -83,7 +83,6 @@
               Add To Menu</button
             >
           {/if}
-
           <img src={foodItem.img} alt={foodItem.item} />
         </div>
       {/each}
