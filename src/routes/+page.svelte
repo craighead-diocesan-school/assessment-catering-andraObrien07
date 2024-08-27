@@ -17,7 +17,7 @@
 
   let menu = [];
 
-  // foodToBuy = [...foodToBuy, { nameMenu: "" }];
+  let nameMenu = [];
 
   function addFoodToMenu(foodItem) {
     menu = [...menu, foodItem];
@@ -35,8 +35,8 @@
 </script>
 
 <Header />
-<p>Name you custon menu</p>
-<input bind:value={foodToBuy.nameMenu} />
+<p>Name your custom menu</p>
+<input bind:value={nameMenu} />
 <div class="columns">
   <div class="column">
     {#await foodToBuy}
@@ -44,76 +44,76 @@
     {:then foodToBuy}
       <!-- two diff loops to go through the two diff arrays. fast and nice -->
       {#each foodToBuy.breakfast as foodItem}
-        <!-- <div class:highlighted={foodToBuy.selected}> -->
-        <p>Breakfast</p>
-        {foodItem.item}
-        {foodItem.description}
-        {foodItem.selected}
-        ${foodItem.price}
-        {#if addFoodToMenu}
-          <p>Already added to menu</p>
-          <button
-            disabled={menu.includes(foodItem)}
-            on:click={() => {
-              addFoodToMenu(foodItem);
-            }}
-          >
-            Add To Menu</button
-          >
-        {/if}
-        <!-- </div> -->
         <div class:highlighted={foodItem.selected}>
+          <p>Breakfast</p>
+          {foodItem.item}
+          {foodItem.description}
+          <!-- {foodItem.selected} -->
+          ${foodItem.price}
+          {#if addFoodToMenu}
+            <p>Already added to menu</p>
+            <button
+              disabled={menu.includes(foodItem)}
+              on:click={() => {
+                addFoodToMenu(foodItem);
+              }}
+            >
+              Add To Menu</button
+            >
+          {/if}
+
           <img src={foodItem.img} alt={foodItem.item} />
         </div>
       {/each}
 
       {#each foodToBuy.dinner as foodItem}
-        <p>Dinner</p>
-        {foodItem.item}
-        {foodItem.description}
-        ${foodItem.price}
-        {#if addFoodToMenu}
-          <p>Already added to menu</p>
-          <button
-            disabled={menu.includes(foodItem)}
-            on:click={() => {
-              addFoodToMenu(foodItem);
-            }}
-          >
-            Add To Menu</button
-          >
-        {/if}
         <div class:highlighted={foodItem.selected}>
+          <p>Dinner</p>
+          {foodItem.item}
+          {foodItem.description}
+          ${foodItem.price}
+          {#if addFoodToMenu}
+            <p>Already added to menu</p>
+            <button
+              disabled={menu.includes(foodItem)}
+              on:click={() => {
+                addFoodToMenu(foodItem);
+              }}
+            >
+              Add To Menu</button
+            >
+          {/if}
+
           <img src={foodItem.img} alt={foodItem.item} />
         </div>
       {/each}
 
       {#each foodToBuy.dessert as foodItem}
-        <p>Dessert</p>
-        {foodItem.item}
-        {foodItem.description}
-        ${foodItem.price}
-
-        {#if addFoodToMenu}
-          <p>Already added to menu</p>
-          <button
-            disabled={menu.includes(foodItem)}
-            on:click={() => {
-              addFoodToMenu(foodItem);
-            }}
-          >
-            Add To Menu</button
-          >
-        {/if}
         <div class:highlighted={foodItem.selected}>
+          <p>Dessert</p>
+          {foodItem.item}
+          {foodItem.description}
+          ${foodItem.price}
+
+          {#if addFoodToMenu}
+            <p>Already added to menu</p>
+            <button
+              disabled={menu.includes(foodItem)}
+              on:click={() => {
+                addFoodToMenu(foodItem);
+              }}
+            >
+              Add To Menu</button
+            >
+          {/if}
+
           <img src={foodItem.img} alt={foodItem.item} />
         </div>
       {/each}
     {/await}
   </div>
   <div class="column">
-    <h3>Menu</h3>
-    {foodToBuy.nameMenu}
+    {nameMenu}
     {#if menu == 0}
       <p>No Food In Menu</p>
     {:else}
@@ -123,7 +123,7 @@
     {#each menu as foodItem, index}
       <button
         on:click={() => {
-          removeFoodFromMenu(index);
+          removeFoodFromMenu(index, foodItem);
         }}>🗑️</button
       >
       {foodItem.item}
@@ -143,11 +143,9 @@
     width: 300px;
     max-width: 100%;
     margin-left: 20px;
-    /* padding-bottom: 10px; */
   }
 
   .highlighted {
-    background-color: blue;
-    /* padding-bottom: 10px; */
+    background-color: rgb(249, 162, 40);
   }
 </style>
