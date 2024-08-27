@@ -1,6 +1,6 @@
 <script>
   import Header from "$lib/Header.svelte";
-
+  import Card from "$lib/Card.svelte";
   // go to the getfood function and it will send you back the array.
   let foodToBuy = getFood();
   // let selected = carsForHire[0];
@@ -29,7 +29,7 @@
   }
 
   //sets the gst to 15% which is ready to be plussed to each food
-  let GST = 0.15;
+  const GST = 0.15;
 
   //removes food from the menu (dependent on its index)
   function removeFoodFromMenu(index, foodItem) {
@@ -58,9 +58,9 @@
         <!-- highlight the fooitem if the add to menu button has been clicked which changes the selected to true -->
         <div class:highlighted={foodItem.selected}>
           <p>Breakfast</p>
-          {foodItem.item}
-          {foodItem.description}
-          ${foodItem.price}
+
+          <Card {foodItem} />
+
           {#if addFoodToMenu}
             <!-- disable if food is already in the menu array  -->
             <button
@@ -72,18 +72,15 @@
               Add To Menu</button
             >
           {/if}
-
-          <img src={foodItem.img} alt={foodItem.item} />
         </div>
       {/each}
 
       <!-- looping through the dinner array and displaying each foodToBuy from that array -->
       {#each foodToBuy.dinner as foodItem}
+        <!-- highlight the fooitem if the add to menu button has been clicked which changes the selected to true -->
         <div class:highlighted={foodItem.selected}>
           <p>Dinner</p>
-          {foodItem.item}
-          {foodItem.description}
-          ${foodItem.price}
+          <Card {foodItem} />
           {#if addFoodToMenu}
             <p>Already added to menu</p>
             <button
@@ -95,7 +92,6 @@
               Add To Menu</button
             >
           {/if}
-          <img src={foodItem.img} alt={foodItem.item} />
         </div>
       {/each}
 
@@ -103,9 +99,7 @@
       {#each foodToBuy.dessert as foodItem}
         <div class:highlighted={foodItem.selected}>
           <p>Dessert</p>
-          {foodItem.item}
-          {foodItem.description}
-          ${foodItem.price}
+          <Card {foodItem} />
 
           {#if addFoodToMenu}
             <p>Already added to menu</p>
@@ -118,7 +112,6 @@
               Add To Menu</button
             >
           {/if}
-          <img src={foodItem.img} alt={foodItem.item} />
         </div>
       {/each}
     {/await}
