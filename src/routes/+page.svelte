@@ -58,7 +58,7 @@
         <!-- highlight the fooitem if the add to menu button has been clicked which changes the selected to true -->
         <div class:highlighted={foodItem.selected}>
           <p>Breakfast</p>
-
+          <!-- calls the food information fropm the card and displays it on the page  -->
           <Card {foodItem} />
 
           {#if addFoodToMenu}
@@ -71,6 +71,7 @@
             >
               Add To Menu</button
             >
+            <!-- triggers the addFoodToMenu function when the add to menu button it clicked -->
           {/if}
         </div>
       {/each}
@@ -81,8 +82,10 @@
         <div class:highlighted={foodItem.selected}>
           <p>Dinner</p>
           <Card {foodItem} />
+          <!-- calls the food information fropm the card and displays it on the page  -->
           {#if addFoodToMenu}
             <p>Already added to menu</p>
+            <!-- disable if food is already in the menu array  -->
             <button
               disabled={menu.includes(foodItem)}
               on:click={() => {
@@ -91,6 +94,7 @@
             >
               Add To Menu</button
             >
+            <!-- triggers the addFoodToMenu function when the add to menu button it clicked -->
           {/if}
         </div>
       {/each}
@@ -100,9 +104,10 @@
         <div class:highlighted={foodItem.selected}>
           <p>Dessert</p>
           <Card {foodItem} />
-
+          <!-- calls the food information fropm the card and displays it on the page  -->
           {#if addFoodToMenu}
             <p>Already added to menu</p>
+            <!-- disable if food is already in the menu array  -->
             <button
               disabled={menu.includes(foodItem)}
               on:click={() => {
@@ -111,6 +116,7 @@
             >
               Add To Menu</button
             >
+            <!-- triggers the addFoodToMenu function when the add to menu button it clicked -->
           {/if}
         </div>
       {/each}
@@ -118,13 +124,16 @@
   </div>
   <div class="column">
     {nameMenu}
+    <!-- if the menu has 0 foods in it this message will show -->
     {#if menu == 0}
       <p>No Food In Menu</p>
+      <!-- if the menu has anything other than 0 items it will show the messgae below -->
     {:else}
       <p>You have {menu.length} foods in your menu</p>
     {/if}
 
     {#each menu as foodItem, index}
+      <!-- triggers the removeFoodFromMenu function and makes a button to trigger that function -->
       <button
         on:click={() => {
           removeFoodFromMenu(index, foodItem);
@@ -143,12 +152,13 @@
 </footer>
 
 <style>
+  /* css */
   .column {
     width: 300px;
     max-width: 100%;
     margin-left: 20px;
   }
-
+  /* css for selected food */
   .highlighted {
     background-color: rgb(249, 162, 40);
   }
